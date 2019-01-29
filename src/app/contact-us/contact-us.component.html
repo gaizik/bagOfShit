@@ -1,3 +1,35 @@
-<p>
-  contact-us works!
-</p>
+
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <h3>צור קשר עם שק של קקי</h3>                           
+              <form class="form-grop row" [formGroup]="contactUsForm" (ngSubmit)="onSubmit()" >
+                <div class="form-group row">
+                  <label for="fullName" class="col-2 col-form-label">Full name</label>
+                  <div class="col-10">
+                    <input formControlName="fullName" class="form-control" type="text" value="" id="fullName"
+                    [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }"> 
+                  </div>
+                  <div class="invalid-feedback">
+                    <div *ngIf="f.fullName.errors.required" >Error</div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email" class="col-2 col-form-label">email</label>
+                  <div class="col-10">
+                    <input formControlName="email" class="form-control" type="text" value="" id="fullName"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"> 
+                  </div>
+                  <div class="invalid-feedback">
+                    <div *ngIf="f.email.email.required" >Error</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary">Register</button>
+              </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
