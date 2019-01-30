@@ -3,30 +3,47 @@
   <div class="container">
       <div class="row">
           <div class="col-md-6 offset-md-3">
-              <h3>צור קשר עם שק של קקי</h3>                           
-              <form class="form-grop row" [formGroup]="contactUsForm" (ngSubmit)="onSubmit()" >
+              <h3>צור קשר עם שק של קקי</h3>
+              <form class="form-grop row" [formGroup]="contactUsForm"  >
                 <div class="form-group row">
                   <label for="fullName" class="col-2 col-form-label">Full name</label>
                   <div class="col-10">
                     <input formControlName="fullName" class="form-control" type="text" value="" id="fullName"
-                    [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }"> 
+                    [ngClass]="{ 'is-invalid': submitted && f.fullName.errors }">
                   </div>
                   <div class="invalid-feedback">
-                    <div *ngIf="f.fullName.errors.required" >Error</div>
+                    <div *ngIf="f.fullName.errors?.minlength" >פרט יותר שנבין  </div>
+                  </div>
+                  <div class="invalid-feedback" >
+                    <div *ngIf="f.fullName.errors?.required" >שדה חובה</div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="email" class="col-2 col-form-label">email</label>
                   <div class="col-10">
-                    <input formControlName="email" class="form-control" type="text" value="" id="fullName"
-                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"> 
+                    <input formControlName="email" class="form-control" type="email" value="" id="email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                   </div>
                   <div class="invalid-feedback">
-                    <div *ngIf="f.email.email.required" >Error</div>
+                    <div *ngIf="f.email.errors?.required" >שדה חובה</div>
+                  </div>
+                  <div class="invalid-feedback">
+                    <div *ngIf="f.email.errors?.email" >ככה לא נראה אימייל</div>
                   </div>
                 </div>
+                  <div class="form-group row">
+                    <label for="message" class="col-2 col-form-label">message</label>
+                    <div class="col-10">
+                      <textarea name="message" id="message"
+                      [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                    </div>
+                    <div class="invalid-feedback">
+                      <div *ngIf="f.message.errors?.required" >שדה חובה</div>
+                    </div>
+
+                  </div>
                 <div class="form-group">
-                  <button class="btn btn-primary">Register</button>
+                  <button  (click)="onSubmit()" class="btn btn-primary">Register</button>
               </div>
               </form>
           </div>
