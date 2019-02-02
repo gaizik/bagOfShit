@@ -1,3 +1,27 @@
-<p>
-  home works!
-</p>
+<div class="container">
+    <input type="text" [(ngModel)]="query">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productsList |  startsWith : query | slice : first : last " scope="row">
+        <td >{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.image}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="getNext()" [disabled]="nextDisabled" >Next ></button>
+    <button (click)="getPrevious()" [disabled]="previousDisabled"> previous </button>
+  </div>
+</div>
+
+<!-- { id:1, name: "Dog Poop", image: "", price: 350 } -->
